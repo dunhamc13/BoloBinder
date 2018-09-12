@@ -44,23 +44,29 @@ namespace BoloCreator
             {
                 foreach (string file in Directory.GetFiles(path))
                 {
-                    if (file.ToLower().EndsWith(".jpg") || file.ToLower().EndsWith(".jpeg") || file.ToLower().EndsWith(".png"))
-                    {
-                        string[] arr = { path, file };
-                        if (settings.SortByType)
+                    bool skippingThisFile = false;
+                    foreach (string keyword in settings.SkipKeywords)
+                        if (file.Contains(keyword))
+                            skippingThisFile = true;
+                    if (!skippingThisFile) {
+                        if (file.ToLower().EndsWith(".jpg") || file.ToLower().EndsWith(".jpeg") || file.ToLower().EndsWith(".png"))
                         {
-                            if (path.Contains("\\" + settings.ApprehensionFolderName + "\\") || path.Contains("\\" + settings.ApprehensionFolderName))
-                                apprehensions.Add(arr);
-                            else if (path.Contains("\\" + settings.PmrFolderName + "\\") || path.Contains("\\" + settings.PmrFolderName))
-                                pmrs.Add(arr);
-                            else if (path.Contains("\\" + settings.KtrFolderName + "\\") || path.Contains("\\" + settings.KtrFolderName))
-                                ktrs.Add(arr);
+                            string[] arr = { path, file };
+                            if (settings.SortByType)
+                            {
+                                if (path.Contains("\\" + settings.ApprehensionFolderName + "\\") || path.Contains("\\" + settings.ApprehensionFolderName))
+                                    apprehensions.Add(arr);
+                                else if (path.Contains("\\" + settings.PmrFolderName + "\\") || path.Contains("\\" + settings.PmrFolderName))
+                                    pmrs.Add(arr);
+                                else if (path.Contains("\\" + settings.KtrFolderName + "\\") || path.Contains("\\" + settings.KtrFolderName))
+                                    ktrs.Add(arr);
+                                else
+                                    miscellaneous.Add(arr);
+                            }
                             else
-                                miscellaneous.Add(arr);
-                        }
-                        else
-                        {
-                            all.Add(arr);
+                            {
+                                all.Add(arr);
+                            }
                         }
                         //Console.WriteLine("\n------" + "PATH: " + arr[0] + "\nFILE: " + arr[1]);
                     }
@@ -246,11 +252,15 @@ namespace BoloCreator
 
         private void helpToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("To save this for use on a tablet:\n" +
-                "1) Right click the document and select \"Print...\"\n" +
-                "2) Instead of a printer, make sure \"Print to PDF\" is selected.\n" +
-                "3) Continue through the dialog and when finished move the newly created .pdf onto your tablet.\n"
-                , "Help");
+            MessageBox.Show("");
+        }
+
+        private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmSettings s = new frmSettings();
+            s.ShowDialog(this);
+            if ((bool)s.Tag == true && path.Length > 0)
+                CreatePage();
         }
     }
 }

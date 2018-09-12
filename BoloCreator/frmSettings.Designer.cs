@@ -260,6 +260,7 @@
             this.btnAddWord.TabIndex = 3;
             this.btnAddWord.Text = "Add Keyword";
             this.btnAddWord.UseVisualStyleBackColor = true;
+            this.btnAddWord.Click += new System.EventHandler(this.btnAddWord_Click);
             // 
             // txtAddWord
             // 
@@ -270,12 +271,14 @@
             // 
             // btnRemoveWord
             // 
+            this.btnRemoveWord.Enabled = false;
             this.btnRemoveWord.Location = new System.Drawing.Point(179, 61);
             this.btnRemoveWord.Name = "btnRemoveWord";
             this.btnRemoveWord.Size = new System.Drawing.Size(149, 23);
             this.btnRemoveWord.TabIndex = 4;
             this.btnRemoveWord.Text = "Remove Selected Keyword";
             this.btnRemoveWord.UseVisualStyleBackColor = true;
+            this.btnRemoveWord.Click += new System.EventHandler(this.btnRemoveWord_Click);
             // 
             // lbExclusionList
             // 
@@ -284,6 +287,7 @@
             this.lbExclusionList.Name = "lbExclusionList";
             this.lbExclusionList.Size = new System.Drawing.Size(164, 264);
             this.lbExclusionList.TabIndex = 1;
+            this.lbExclusionList.SelectedIndexChanged += new System.EventHandler(this.lbExclusionList_SelectedIndexChanged);
             // 
             // lblExclusionList
             // 
