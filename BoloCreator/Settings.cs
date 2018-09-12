@@ -1,27 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BoloCreator
-{
-    class Settings
-    {
-        public bool SortNewestFirst { get; set; } = true;
-        public bool PutApprehensionPhotosFirst { get; set; } = true;
-        public string ApprehensionFolderName{ get; set; } = "APP";
-        public string PmrFolderName { get; set; } = "PMR";
-        public string KtrFolderName { get; set; } = "KTR";
-        public bool IncludeApprehensions { get; set; } = true;
-        public bool IncludePmrs { get; set; } = true;
-        public bool IncludeKtrs { get; set; } = true;
-        public bool IncludeMisc { get; set; } = true;
-        public bool SortByType { get; set; } = true;
-
-
-
-        public Settings() { }
+﻿namespace BoloCreator.Properties {
+    
+    
+    // This class allows you to handle specific events on the settings class:
+    //  The SettingChanging event is raised before a setting's value is changed.
+    //  The PropertyChanged event is raised after a setting's value is changed.
+    //  The SettingsLoaded event is raised after the setting values are loaded.
+    //  The SettingsSaving event is raised before the setting values are saved.
+    internal sealed partial class Settings {
+        
+        public Settings() {
+            // // To add event handlers for saving and changing settings, uncomment the lines below:
+            //
+            // this.SettingChanging += this.SettingChangingEventHandler;
+            //
+            // this.SettingsSaving += this.SettingsSavingEventHandler;
+            //
+        }
+        
+        private void SettingChangingEventHandler(object sender, System.Configuration.SettingChangingEventArgs e) {
+            // Add code to handle the SettingChangingEvent event here.
+        }
+        
+        private void SettingsSavingEventHandler(object sender, System.ComponentModel.CancelEventArgs e) {
+            // Add code to handle the SettingsSaving event here.
+        }
     }
-
 }

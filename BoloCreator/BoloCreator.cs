@@ -18,10 +18,11 @@ namespace BoloCreator
         private List<string[]> apprehensions = new List<string[]>();
         private List<string[]> pmrs = new List<string[]>();
         private List<string[]> ktrs = new List<string[]>();
+        private List<string[]> all = new List<string[]>();
         private const string VERSION_NUMBER = "0.0.2";
         private bool cancelNav = false;
         string path = "";
-        Settings settings = new Settings();
+        Properties.Settings settings = Properties.Settings.Default;
 
         public BoloCreator()
         {
@@ -59,7 +60,7 @@ namespace BoloCreator
                         }
                         else
                         {
-                            miscellaneous.Add(arr);
+                            all.Add(arr);
                         }
                         //Console.WriteLine("\n------" + "PATH: " + arr[0] + "\nFILE: " + arr[1]);
                     }
@@ -176,15 +177,15 @@ namespace BoloCreator
             {
                 if (settings.SortNewestFirst)
                 {
-                    for (int i = miscellaneous.Count - 1; i > -1; i--)
+                    for (int i = all.Count - 1; i > -1; i--)
                     {
-                        content += "<a href=\"" + miscellaneous[i][0] + "\"><img width=\"20%\" src=\"" + miscellaneous[i][1] + "\" title=\"" + miscellaneous[i][1] + "\"></a>";
+                        content += "<a href=\"" + all[i][0] + "\"><img width=\"20%\" src=\"" + all[i][1] + "\" title=\"" + all[i][1] + "\"></a>";
                     }
                 } else
                 {
-                    for (int i = 0; i < miscellaneous.Count; i++)
+                    for (int i = 0; i < all.Count; i++)
                     {
-                        content += "<a href=\"" + miscellaneous[i][0] + "\"><img src=\"" + miscellaneous[i][1] + "\" title=\"" + miscellaneous[i][1] + "\"></a>";
+                        content += "<a href=\"" + all[i][0] + "\"><img src=\"" + all[i][1] + "\" title=\"" + all[i][1] + "\"></a>";
                     }
                 }
             }
